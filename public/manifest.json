@@ -1,0 +1,21 @@
+{
+  "name": "チャリ安全ナビ",
+  "short_name": "チャリ安全ナビ",
+  "description": "自転車の危険地点を共有し、安全な走行を促進するサービス",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
