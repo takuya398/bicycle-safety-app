@@ -60,34 +60,28 @@ export default function MapView() {
   }, [])
 
   useEffect(() => {
-    console.log('[MapView] useEffect fired, container:', mapContainer.current)
-    console.log('[MapView] token:', process.env.NEXT_PUBLIC_MAPBOX_TOKEN?.slice(0, 20))
     if (!mapContainer.current) return
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!
 
-    try {
-      map.current = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [139.6917, 35.6895],
-        zoom: 13,
-      })
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [139.6917, 35.6895],
+      zoom: 13,
+    })
 
-      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right')
+    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right')
 
-      map.current.on('load', () => {
-        map.current?.resize()
-        const bounds = map.current!.getBounds()
-        if (bounds) fetchSpots(bounds)
-      })
+    map.current.on('load', () => {
+      map.current?.resize()
+      const bounds = map.current!.getBounds()
+      if (bounds) fetchSpots(bounds)
+    })
 
-      map.current.on('moveend', () => {
-        const bounds = map.current!.getBounds()
-        if (bounds) fetchSpots(bounds)
-      })
-    } catch (e) {
-      console.error('[MapView] Map initialization error:', e)
-    }
+    map.current.on('moveend', () => {
+      const bounds = map.current!.getBounds()
+      if (bounds) fetchSpots(bounds)
+    })
 
     return () => map.current?.remove()
   }, [fetchSpots])
