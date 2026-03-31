@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${geist.className} min-h-screen bg-gray-50`}>
         <Header />
-        <main>{children}</main>
+        <main className="flex flex-col" style={{ minHeight: 'calc(100vh - 56px)' }}>{children}</main>
         <Toaster />
       </body>
     </html>
